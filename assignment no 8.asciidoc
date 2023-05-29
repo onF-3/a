@@ -1,0 +1,99 @@
++*In[ ]:*+
+[source, ipython3]
+----
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from matplotlib import pyplot as plt
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1=pd.read_csv('titanic.csv')
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.head()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.replace("?",np.nan,inplace=True)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2=df1.dropna()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2.head()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2.shape
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.shape
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.relplot(x="Age",y="Fare",data=df2)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.relplot(x="Age",y="Fare",data=df2,hue="Sex")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.histplot(df2.Fare,bins=10)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.catplot(x="Pclass",y="Fare",data=df2,kind="box")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.catplot(x="Pclass",y="Survived",data=df2,kind="bar")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----

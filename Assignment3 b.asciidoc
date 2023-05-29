@@ -1,0 +1,54 @@
++*In[ ]:*+
+[source, ipython3]
+----
+import pandas as pd
+import seaborn as sns
+from matplotlib import pyplot as plt
+import numpy as np
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1=pd.read_csv("Iris.csv")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.head()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+#Group into 3 categories according to species
+df2=df1[(df1["Species"])=="Iris-setosa"]
+df2.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df3=df1[(df1["Species"]=="Iris-versicolor")]
+df3.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df4=df1[(df1["Species"]=="Iris-virginica")]
+df4.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----

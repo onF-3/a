@@ -1,0 +1,111 @@
++*In[ ]:*+
+[source, ipython3]
+----
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+# Load the iris dataset
+iris = pd.read_csv('iris.csv')
+
+# Split the dataset into features (X) and labels (y)
+X = iris.drop('Species', axis=1)
+y = iris['Species']
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+# Create a Naive Bayes classifier
+gnb = GaussianNB()
+
+# Train the classifier using the training data
+gnb.fit(X_train, y_train)
+
+# Use the classifier to predict the species of the test data
+y_pred = gnb.predict(X_test)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+# Print the accuracy score of the classifier
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(y_test, y_pred)
+print('Accuracy:', accuracy)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+from sklearn.metrics import confusion_matrix, classification_report
+
+# Compute the confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+print('Confusion Matrix:')
+print(cm)
+
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+# Compute the classification report
+report = classification_report(y_test, y_pred)
+print('Classification Report:')
+print(report)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+# Compute the true positives (TP), false positives (FP), true negatives (TN), false negatives (FN)
+TP = cm[0][0]
+FP = cm[0][1] + cm[0][2] + cm[1][2] + cm[2][1] + cm[2][0]
+TN = cm[1][1] + cm[1][0] + cm[2][2] + cm[2][0] + cm[0][1]
+FN = cm[1][0] + cm[2][0] + cm[0][2]
+
+# Compute the accuracy, error rate, precision, and recall
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+error_rate = (FP + FN) / (TP + TN + FP + FN)
+precision_setosa = TP / (TP + FP)
+precision_versicolor = TN / (TN + FN)
+precision_virginica = cm[2][2] / (cm[2][2] + cm[2][0] + cm[0][2])
+recall_setosa = TP / (TP + FN + cm[0][1] + cm[0][2])
+recall_versicolor = TN / (TN + FP + cm[1][0] + cm[1][2])
+recall_virginica = cm[2][2] / (cm[2][2] + cm[2][1] + cm[2][0] + cm[0][2] + cm[1][2])
+
+# Print the results
+print('True Positives (TP):', TP)
+print('False Positives (FP):', FP)
+print('True Negatives (TN):', TN)
+print('False Negatives (FN):', FN)
+print('Accuracy:', accuracy)
+print('Error Rate:', error_rate)
+print('Precision (setosa):', precision_setosa)
+print('Precision (versicolor):', precision_versicolor)
+print('Precision (virginica):', precision_virginica)
+print('Recall (setosa):', recall_setosa)
+print('Recall (versicolor):', recall_versicolor)
+print('Recall (virginica):', recall_virginica)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----

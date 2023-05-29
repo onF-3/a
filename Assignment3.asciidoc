@@ -1,0 +1,103 @@
++*In[ ]:*+
+[source, ipython3]
+----
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from matplotlib import pyplot as plt
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1=pd.read_csv("nba.csv")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.head()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.shape
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2=df1.dropna()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2.shape
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2["Age"].describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df3=df2[(df2["Age"]<25)]
+df3.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df4=df2[(df2["Age"]>=25) & (df2["Age"]<30)]
+df4.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df5=df2[(df2["Age"]>=30) & (df2["Age"]<35)]
+df5.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df6=df2[(df2["Age"]>35)]
+df6.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----

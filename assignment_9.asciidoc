@@ -1,0 +1,27 @@
++*In[ ]:*+
+[source, ipython3]
+----
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+dataset = sns.load_dataset('titanic')
+
+dataset.head()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.boxplot(x='sex', y='age', data=dataset)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.boxplot(x='sex', y='age', data=dataset, hue="survived")
+----

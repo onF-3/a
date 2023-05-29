@@ -1,0 +1,60 @@
++*In[ ]:*+
+[source, ipython3]
+----
+import pandas as pd
+import seaborn as sns
+from matplotlib import pyplot as plt
+from sklearn.linear_model import LinearRegression
+import numpy as np
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1=pd.read_csv('Boston.csv')
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.head()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.corr()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+x=df1[['lstat','rm']].copy()
+y=df1['medv']
+
+#Fitting the model.
+lr=LinearRegression()
+lr.fit(x,y)
+y_hat=lr.predict(x)
+
+err=y-y_hat
+sse=np.dot(err,err)
+
+tot=y-y.mean()
+sst=np.dot(tot,tot)
+
+r2=(1-sse)/sst
+print("r2 value is",r2)
+
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----

@@ -1,0 +1,119 @@
++*In[ ]:*+
+[source, ipython3]
+----
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1=pd.read_csv("melb_data.csv")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+print(df1.head())
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+#Checking missing values.
+df1.isnull()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.shape
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.dtypes
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2=df1.dropna()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2.head()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2.describe()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2.shape
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2.dtypes
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df2=df2.astype({"Postcode":int,"Car":int,"YearBuilt":int})
+df2.dtypes
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+print("Before conversion")
+df2["Type"].value_counts()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+print("After conversion")
+df2["Type"]=df2["Type"].astype('category')
+df2["Type"]=df2["Type"].cat.codes
+df2["Type"].value_counts()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----

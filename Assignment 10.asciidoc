@@ -1,0 +1,122 @@
++*In[ ]:*+
+[source, ipython3]
+----
+import pandas as pd
+import seaborn as sns
+from matplotlib import pyplot as plt
+import numpy as np
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1=pd.read_csv("Iris.csv")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+df1.head()
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.histplot(df1.SepalLengthCm)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.histplot(df1.SepalWidthCm)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.histplot(df1.PetalWidthCm)
+            
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.histplot(df1.PetalLengthCm)
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.catplot(y='SepalLengthCm',data=df1,kind="box")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.catplot(y='SepalWidthCm',data=df1,kind="box")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.catplot(y='PetalLengthCm',data=df1,kind="box")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+sns.catplot(y='PetalWidthCm',data=df1,kind="box")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+#From the above we conclude that sepal width cm has ouliers and need to be removed.
+
+def outliers(df,feature): #Create a list of outlier indexes.
+    q1=df[feature].quantile(0.25)
+    q3=df[feature].quantile(0.75)
+    iqr=q3-q1
+    upper_bound=q3+1.5*iqr
+    lower_bound=q1-1.5*iqr
+    ls=df.index[(df[feature]<lower_bound)|(df[feature]>upper_bound)]
+    return ls
+def remove(df,ls):
+    ls=sorted(set(ls))
+    df=df.drop(ls)
+    return df
+
+#Form list of oulier indexes
+index=[]
+for feature in['SepalWidthCm']:
+    index.extend(outliers(df1,feature))
+#print(index)
+df2=remove(df1,index)
+sns.catplot(y='SepalWidthCm',data=df1,kind="box")
+sns.catplot(y='SepalWidthCm',data=df2,kind="box")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+print("Successfully removed all the outliers!!!!!!!!")
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----
